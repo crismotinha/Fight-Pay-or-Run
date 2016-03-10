@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel='stylesheet' href='style.css'/>
+  <meta charset="UTF-8">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+
+<body>
+  <div id="header">
+    <p><img src="img\banner.png" /></p>
+  </div>
+  <div id="myChart">
+
+    <img id="avatar" src="img\avatar.png" />
+		<p class="ficha"> Nome: </p>
+			<form id="form" enctype="multipart/form-data" method="post" action="">
+			<input type="text" name="nome" />
+			<input type="button" name="botao" value="OK" class="trocar">
+			</form>
+
+    <p class="ficha"> Dinheiro: <span id="usercoins">?</span></p>
+		<p class="ficha"> Pontos de vida: <span id="userPV">?</span></p>
+		<p class="ficha"> Pontos de força: <span id="userPF">?</span></p>
+    <p class="ficha" id="dado"> Seu dado:
+    <button id="diceroll"> Sorteie aqui! </button> </p>
+		<p class="ficha" id="sorteio">Você tirou:  <span id="diceresult">teste</span>
+			<span id="adicionalPF"></span> </p>
+
+		<div id="borda"></div>
+    </div>
+
+  	<div id="screen">
+      <p id="story"> === EM CONSTRUÇÃO === <br>
+			Então, por enquanto os botões abaixo não fazem nada (ao clicar...), mas o de sorteio
+		faz. Teste aí! </p>
+			<button type="button" id="bfight" align="center">Fight</button>
+			<button type="button" id="bpay" align="center">Pay</button>
+			<button type="button" id="brun" align="center">Run</button>
+			<button type="button" id="start" align="center">COMEÇAR!</button>
+  	</div>
+
+		<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+		<scrit type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>

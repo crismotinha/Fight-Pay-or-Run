@@ -1,3 +1,20 @@
+//jQuery da form nome:
+jQuery.noConflict()
+$(document).ready(function(){
+  console.log("deu certo")
+})
+
+$(function(){
+$('.trocar').on('click', function(){
+
+	var valor = $('input').attr('name', 'nome').val();
+
+	$("#form").html(valor);
+
+
+})
+})
+//*****************************************************************************
 //sorteio do dado: funcionando
 userDice = "";
 userRoll = function() {
@@ -12,7 +29,7 @@ document.getElementById("diceroll").disabled = true
 function User(name) {
 
 	var coins = 10;
-	var pv = 4;
+	var pv = 10;
   var pf = 2;
 
 	this.getCoins = function() { return coins; }
@@ -47,21 +64,7 @@ var changePF = function() {
 };
 changePF();
 
-//Monstros: funcionando
-function Monster(name, coins, pv, pf) {
-  this.name = name;
-  var coins = coins;
-  var pv = pv;
-  var pf = pf;
 
-  this.getCoins = function () { return coins; }
-  this.getPV = function() { return pv; }
-}
-//Monstros:
-var clips = new Monster ("Clips", 2, 1);
-var beholder = new Monster("Beholder", 100, 4);
-
-//
 //Página inicial:
 function noButtons() {
     document.getElementById("bfight").style.display = "none";
@@ -73,6 +76,20 @@ var introduction = "Seja bem vindo ao Lute, pague ou corra! <br>\
 <br> Clique no botão abaixo para começar!"
 document.getElementById("story").innerHTML = introduction;
 //Primeira página
+
+function changePage1() {
+    var page1 = "Vamos explicar como funciona. <br>\
+    Ao longo de sua jornada, você irá encontrar agressores terríveis, e para \
+    combatê-los, poderá lutar, comprar um adicional (pagar) ou tentar fugir. <br>\
+    Para lutar, role o dado. Seu dado + seus pontos de força = dano.\
+    <br> Os adicionais se somam aos seus pontos de força, ok? <br> Já para \
+    fugir... Vai ter que tirar 6. :( Tire 1 ou 2 e é morte na certa. 3, 4 ou 5,\
+    você perde metade dos seus pontos de vida. Vai arriscar? Clique em Começar \
+    novamente para >realmente< começar!"
+    document.getElementById("story").innerHTML = page1;
+    document.getElementById("start").addEventListener("click", changePage2 );
+};
+
 document.getElementById("start").addEventListener("click", changePage1 );
 //Primeira fase
 function comeBackButtons(){
@@ -90,28 +107,22 @@ function Fight(){
   var totalDamage = userDice + user.getPF();
   console.log(totalDamage);
 
-  if (totalDamage >= monsterPV) {
-    var text ="Parabéns! Você derrotou o monstro! Sendo assim, você levou \
-    " + monsterCoins + "moedas! <span id='continue'>Clique para continuar\
-    !</span>"
-    var totalCoins = user.setCoins(monsterCoins);
+  if (totalDamage >= beholderPV) {
+    //mensagem de você venceu
+    var totalCoins = user.setCoins(beholderCoins);
     console.log(user.getCoins())
     changeCoins();
-    document.getElementById("story").innerHTML = text
-    document.getElementById("continue").addEventListener("click", changePage2 )
+    changePage3();
   } else {
-    var text ="Infelizmente você perdeu, e tomou um dano de " +
-    (totalDamage - monsterPV) + "! Mas siga em frente, você consegue!\
-    <span id='continue'>Clique para continuar!</span>"
-    user.setPV(totalDamage - monterPV);
+    //msg de você perdeu
+    user.setPV(totalDamage - beholder.getPV());
     console.log(user.getPV())
     changePV();
-    document.getElementById("story").innerHTML = text
-    document.getElementById("continue").addEventListener("click", changePage2 )
+    changePage4();
     if (user.getPV() <= 0) {
     //msg de game over
     changePV();
-    changePageDie();
+    changePage5();
     }
   }
 }
@@ -151,8 +162,10 @@ function Run(){
     para continuar no jogo</span>"
     document.getElementById("story").innerHTML = text2;
     document.getElementById("continuar").addEventListener("click", changePage2 );
-  } else if (userDice === 1 && userDice === 2 ) {
-    changePageDie();
+  } else if (userDice === 1){
+    changePage5();
+  } else if (userDice === 2){
+    changePage5();
   } else {
     var text3 = text + "<br> OUCH. Perdeu metade da vida heim... Mas\
     <span id='continuar'>clique para continuar no jogo</span>"
@@ -164,22 +177,27 @@ function Run(){
 }
 document.getElementById("diceroll").addEventListener("click", Run2 );
 }
+
+//funcionando:
+function Monster(name, coins, pv) {
+  this.name = name;
+  var coins = coins;
+  var pv = pv;
+
+  this.getCoins = function () { return coins; }
+  this.getPV = function() { return pv; }
+}
+//exemplo:
+var beholder = new Monster("Beholder", 10, 5);
+var beholderPV = beholder.getPV();
+var beholderCoins = beholder.getCoins();
+//só pra nao confundir, alterei até aqui /\
 function changePage2() {
   comeBackButtons();
-  var text = 'E quando você menos espera, um CLIPS vem pra cima de você!!!!\
-  Pelo tamanho dele, não deve ser muito forte... E aí, o que você vai fazer?'
-  var monsterCoins = clips.getCoins();
-  var monsterPV = clips.getPV();
-  document.getElementById("story").innerHTML = text;
-  document.getElementById("bfight").addEventListener("click", Fight )
-  document.getElementById("bpay").addEventListener("click", Pay )
-  document.getElementById("brun").addEventListener("click", Run )
-}
+  var page2 = "> Querido jogador, essa é a primeira versão do jogo, só existe\
+  essa fase por enquanto. < Você estava andando pela mesa do escritório quando\
+   de repente, surge um GRAMPEADOR querendo te matar! E aí, vai fazer o que? "
 
-function changeFase1() {
-  comeBackButtons();
-  var page2 = "Você vai lutar com o Beholder pois é o unico que criei até agora.\
-  <span id='teste5'></span>  "
 
   document.getElementById("story").innerHTML = page2;
   document.getElementById("bfight").addEventListener("click", Fight )
@@ -187,37 +205,29 @@ function changeFase1() {
   document.getElementById("brun").addEventListener("click", Run )
 }
 
-function changePageIntro() {
-
-  var text = "Você acorda, e ao olhar para baixo, descobre que saiu do papel.\
-  Você não entende como isso aconteceu, nem como criou consciência! Mas o fato\
-   é que você é um boneco de palitos que criou vida. E não foi só você!<br> -Uma \
-   bolsinha de moedas também, menos mal<br> você pensa, mesmo sem saber direito \
-   pra que servem as moedas... Você continua seguindo pela mesa, explorando..\
-   "
-   document.getElementById("story").innerHTML = text ;
-   document.getElementById("start").style.display = "inline-block"
-   document.getElementById("start").addEventListener("click", changePage2 );
-}
-
-function changePage1() {
-    var page1 = "Vamos explicar como funciona. <br>\
-    Ao longo de sua jornada, você irá encontrar agressores terríveis, e para \
-    combatê-los, poderá lutar, comprar um adicional (pagar) ou tentar fugir. <br>\
-    Para lutar, role o dado. Seu dado + seus pontos de força = dano.\
-    <br> Os adicionais se somam aos seus pontos de força, ok? <br> Já para \
-    fugir... Vai ter que tirar 6. :( Tire 1 ou 2 e é morte na certa. 3, 4 ou 5,\
-    você perde metade dos seus pontos de vida. Vai arriscar? Clique em Começar \
-    novamente para >realmente< começar!"
-    document.getElementById("story").innerHTML = page1;
-    document.getElementById("start").addEventListener("click", changePageIntro );
-};
-
-function changePageDie() {
-  var text = "Infelizmente, o monstro te atacou ferozmente. Você não conseguiu\
-  resistir aos ferimentos e faleceu. Meus pêsames :( <br> Caso queira jogar\
-    de novo, basta atualizar a página! "
-  document.getElementById("story").innerHTML = text;
+function changePage3() {
+  document.getElementById("usercoins").innerHTML = user.getCoins();
+  var page3 = "Parabéeens, você derrotou o monstro GRAMPEADOR e ganhou o jogo!\
+  Atualize a página para jogar do início ou clique em começar para lutar\
+  novamente!"
+  document.getElementById("story").innerHTML = page3;
+  document.getElementById("start").addEventListener("click", changePage2 );
   noButtons();
-  document.getElementById("diceroll").disabled = true
+  document.getElementById("start").style.display = "inline-block"
+
+}
+function changePage4() {
+  var page3 = "Infelizmente o GRAMPEADOR te atingiu e te machucou um pouco :( \
+    Se ainda tiver vida e coragem suficiente, clique em começar para lutar \
+    novamente. Se quiser começar de novo, atualize a página!"
+  document.getElementById("story").innerHTML = page3;
+  document.getElementById("start").addEventListener("click", changePage2 );
+  noButtons();
+  document.getElementById("start").style.display = "inline-block"
+}
+function changePage5() {
+  var page3 = "O GRAMPEADOR é um monstro muito forte e infelizmente te matou..\
+  Espero que você descanse em paz e atualize a página para jogar de novo!"
+  document.getElementById("story").innerHTML = page3;
+  noButtons();
 }

@@ -86,7 +86,7 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 1.25em;
-    margin: 2px;
+    margin: 5px;
     justify-content: center;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
@@ -116,13 +116,8 @@ button:hover {
     color: black;
   }
 
-#bfight {
+#bfight, #start {
   margin-left: 100px;
-};
-
-#start {
-  margin-left: 150px;
-  display: inline;
 };
 
 #dice {
@@ -150,5 +145,5 @@ button:hover {
   color: red;
   cursor: pointer;
   margin-top: 5px;
-  
+
 }

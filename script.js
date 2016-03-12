@@ -72,7 +72,7 @@ function noButtons() {
     document.getElementById("brun").style.display = "none";
 }
 noButtons();
-var introduction = "Seja bem vindo ao Lute, pague ou corra! <br>\
+var introduction = "Seja bem vindo ao Lute, pague ou fuja! <br>\
 <br> Clique no botão abaixo para começar!"
 document.getElementById("story").innerHTML = introduction;
 //Primeira página

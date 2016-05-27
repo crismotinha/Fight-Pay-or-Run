@@ -1,0 +1,149 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url(img/bodybackground.png);
+  background-repeat: no-repeat;
+  background-color: #e1e1e1;
+  background-attachment: fixed;
+  background-position: center top;
+
+}
+
+#header {
+  width: 98%;
+  heigth: 30%;
+  margin-bottom: 10px;
+  text-align: center;
+
+}
+
+#myChart {
+  width: 30%;
+  border: 10px solid #f2f2f2;
+  heigth: 50%;
+  float: left;
+  display: inline-block;
+  margin: 20px;
+  background: #7cc576;
+}
+
+.ficha {
+  font-size: 1.5em;
+  font-family: Tahoma, sans-serif;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+#dado {
+  margin-top: 30px;
+}
+
+#borda {
+  background-color: #f2f2f2;
+  height: 100px;
+}
+
+#avatar {
+  width: 100px;
+  display: inline-block;
+  float: left;
+  margin: 10px;
+}
+
+#screen {
+  width: 60%;
+  min-height: 500px;
+  display: inline-block;
+  float: right;
+  background-origin: content-box;
+  background: url(img/screenbackground.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  margin: 20px;
+}
+
+h2 {
+  text-align: center;
+  font-family: sans-serif;
+}
+
+}
+h4 {
+  margin-left: 100px;
+}
+button {
+    background-color: #55adaf;
+    color: black;
+    padding: 5px 10px;
+    border: 2px solid #e9e9e9;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.25em;
+    margin: 5px;
+    justify-content: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #e9e9e9;
+    color: black;
+}
+#diceroll {
+  background-color: #55adaf;
+  color: black;
+  padding: 5px 10px;
+  border: 2px solid #e9e9e9;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline;
+  margin: 2px;
+  font-size: 1em;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+#diceroll:hover {
+    background-color: #e9e9e9;
+    color: black;
+  }
+
+#bfight, #start {
+  margin-left: 100px;
+};
+
+#dice {
+  width: 30%;
+  border: 2px solid black;
+  margin: 3px;
+  clear: both;
+}
+
+#dicepic {
+  width: 70px;
+  margin: 3px;
+}
+
+#story {
+  margin-top: 70px;
+  margin-left: 100px;
+  margin-right: 60px;
+  font-family: monospace;
+  font-size: 1.5em;
+}
+
+#continuar, #sim, #nao, #continue {
+  font-style: oblique;
+  color: red;
+  cursor: pointer;
+  margin-top: 5px;
+
+}
